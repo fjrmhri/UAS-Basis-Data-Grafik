@@ -1,0 +1,44 @@
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/film.csv" AS row
+CREATE (:Film {
+  id_film: row.id_film,
+  judul: row.judul,
+  tahun: toInteger(row.tahun),
+  durasi_menit: toInteger(row.durasi_menit)
+});
+
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/aktor.csv" AS row
+CREATE (:Aktor {
+  nama_aktor: row.nama_aktor,
+  kebangsaan: row.kebangsaan,
+  tahun_lahir: toInteger(row.tahun_lahir)
+});
+
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/sutradara.csv" AS row
+CREATE (:Sutradara {
+  nama_sutradara: row.nama_sutradara,
+  jumlah_film: toInteger(row.jumlah_film),
+  asal: row.asal
+});
+
+
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/genre.csv" AS row
+CREATE (:Genre {
+  nama_genre: row.nama_genre
+});
+
+CREATE INDEX FOR (f:Film) ON (f.id_film);
+CREATE INDEX FOR (a:Aktor) ON (a.nama_aktor);
+CREATE INDEX FOR (s:Sutradara) ON (s.nama_sutradara);
+CREATE INDEX FOR (g:Genre) ON (g.nama_genre);
+
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/aktor.csv" AS row
+MATCH (a:Aktor {nama_aktor: row.nama_aktor}), (f:Film {id_film: row.id_film})
+MERGE (a)-[:BERMAIN_DALAM]->(f);
+
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/sutradara.csv" AS row
+MATCH (s:Sutradara {nama_sutradara: row.nama_sutradara}), (f:Film {id_film: row.id_film})
+MERGE (s)-[:MENYUTRADARAI]->(f);
+
+LOAD CSV WITH HEADERS FROM "http://localhost/Northwind/csv/genre.csv" AS row
+MATCH (f:Film {id_film: row.id_film}), (g:Genre {nama_genre: row.nama_genre})
+MERGE (f)-[:BERGENRE]->(g);

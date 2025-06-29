@@ -1,0 +1,11 @@
+id_film,judul,tahun,durasi_menit,nama_genre,nama_sutradara,nama_aktor
+F1,Inception,2010,148,Sci-Fi,Christopher Nolan,Leonardo DiCaprio
+F2,The Dark Knight,2008,152,Action,Christopher Nolan,Christian Bale
+F3,Interstellar,2014,169,Sci-Fi,Christopher Nolan,Matthew McConaughey
+F4,Titanic,1997,195,Drama,James Cameron,Leonardo DiCaprio
+F5,The Prestige,2006,130,Mystery,Christopher Nolan,Christian Bale
+F6,The Revenant,2015,156,Adventure,Alejandro G. Iñárritu,Leonardo DiCaprio
+F7,Dallas Buyers Club,2013,117,Biography,Jean-Marc Vallée,Matthew McConaughey
+F8,Catch Me If You Can,2002,141,Crime,Steven Spielberg,Leonardo DiCaprio
+F9,Ford v Ferrari,2019,152,Sport,James Mangold,Christian Bale
+F10,Contact,1997,150,Sci-Fi,Robert Zemeckis,Matthew McConaughey
